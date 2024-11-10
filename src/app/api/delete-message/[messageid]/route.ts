@@ -24,7 +24,6 @@ export async function DELETE(request: Request, { params }: { params: { messageid
     }
 
     try {
-        const message = await userModel.findOne({})
         const updatedResult = await userModel.updateOne({
             _id: user._id
         }, {
