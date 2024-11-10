@@ -12,10 +12,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
-import { useDebounceCallback, useDebounceValue } from 'usehooks-ts'
+import { useDebounceCallback } from 'usehooks-ts'
 import * as z from "zod"
 
-const page = () => {
+const Page = () => {
 
     const { toast } = useToast()
     const router = useRouter()
@@ -176,4 +176,4 @@ const page = () => {
 }
 
 
-export default page
+export default Page
