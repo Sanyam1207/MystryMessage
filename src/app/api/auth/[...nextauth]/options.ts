@@ -12,30 +12,32 @@ export const authOptions: NextAuthOptions = {
                 username: { label: "Email", type: "text", placeholder: "Enter Your Email..." },
                 password: { label: "Password", type: "password" }
             },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             async authorize(credentials: any): Promise<any> {
-                await dbConnect()
+                await dbConnect();
                 try {
                     const user = await userModel.findOne({
                         $or: [
-                            {email: credentials.identifier},
-                            {username: credentials.identifier}
+                            { email: credentials.identifier },
+                            { username: credentials.identifier }
                         ]
-                    })
+                    });
                     if (!user) {
-                        throw new Error("No user found with this email")
+                        throw new Error("No user found with this email");
                     }
                     if (!user.isVerified) {
-                        throw new Error("Please Verify Your account first")
+                        throw new Error("Please Verify Your account first");
                     }
-                    const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password)
+                    const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
                     if (isPasswordCorrect) {
-                        return user
+                        return user;
                     } else {
-                        throw new Error("Incorrect Password")
+                        throw new Error("Incorrect Password");
                     }
 
-                } catch (error:any) {
-                    throw new Error(error)
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                } catch (error: any) {
+                    throw new Error(error.message);
                 }
             }
         })
@@ -43,37 +45,33 @@ export const authOptions: NextAuthOptions = {
 
     callbacks: {
         async session({ session, token }) {
-
             if (token) {
-                session.user._id = token._id
-                session.user.isVerified = token.isVerified
-                session.user.isAcceptingMessages = token.isAcceptingMessages
-                session.user.username = token.username
+                session.user._id = token._id;
+                session.user.isVerified = token.isVerified;
+                session.user.isAcceptingMessages = token.isAcceptingMessages;
+                session.user.username = token.username;
             }
-
-            return session
-          },
-          async jwt({ token, user, }) {
-
+            return session;
+        },
+        async jwt({ token, user }) {
             if (user) {
-                token._id = user._id?.toString()
-                token.isVerified = user.isVerified
-                token.isAcceptingMessages = user.isAcceptingMessages
-                token.username = user.username
+                token._id = user._id?.toString();
+                token.isVerified = user.isVerified;
+                token.isAcceptingMessages = user.isAcceptingMessages;
+                token.username = user.username;
             }
-
-            return token
-          }
+            return token;
+        }
     },
 
-    pages : {
+    pages: {
         signIn: '/sign-in'
     },
     
     session: {
         strategy: 'jwt',
         maxAge: 30 * 60 // 30 minutes
-    }, 
+    },
 
     secret: process.env.NEXTAUTH_SECRET
-}
+};
