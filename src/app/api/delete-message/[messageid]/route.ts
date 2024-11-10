@@ -3,9 +3,10 @@ import userModel from "@/model/User";
 import { getServerSession, User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 
-export async function DELETE(request: Request, { params }: { params: { messageid: string } }) {
-    const { messageid } = params; // No need to await since it's just an object
-    console.log(request)
+export async function DELETE(request: Request) {
+    const url = new URL(request.url);
+    const messageid = url.pathname.split("/").pop()
+    console.log(`REQUEST FROM DELETE MESSAGE ====>>> ${messageid}`)
     console.log(`\n\nMessage Id from route delete-message : ${messageid}`);
     await dbConnect();
 
