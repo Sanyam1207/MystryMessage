@@ -1,11 +1,14 @@
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/User';
 
-export async function GET(request: Request, {params}: {params : {username : string}}) {
+export async function GET(request: Request) {
 
     try {
         dbConnect()
-        const { username } = await params
+        console.log(request);
+
+        const url = new URL(request.url);
+        const username = url.pathname.split("/").pop()
         console.log(`\n\nUsername ${username}\n\n`)
 
         const user = await UserModel.findOne({ username })
