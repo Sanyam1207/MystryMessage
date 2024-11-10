@@ -72,7 +72,7 @@ const VerifyAccount = () => {
               name="code"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Verification Code</FormLabel>
+                  <FormLabel>Verification Code || Call 8081463763 to get your verification code</FormLabel>
                   <FormControl>
                     <Input placeholder="code" {...field} />
                   </FormControl>
