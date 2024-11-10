@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         return Response.json({
             message: "Error in getting messages from the AI",
         }, {
-            status: 500
+            status: 200
         })
     }
 }
