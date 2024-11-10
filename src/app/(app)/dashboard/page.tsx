@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-const page = () => {
+const Page = () => {
 
     const router = useRouter()
 
@@ -108,7 +108,7 @@ const page = () => {
 
     const sessionData = session?.user as User
     console.log("Session data : +> +> : ", { ...sessionData });
-    const { username, _id } = { ...sessionData }
+    const { username } = { ...sessionData }
     console.log("Session data : +> +> : ", username);
 
     const isBrowser = typeof window !== 'undefined';
@@ -125,12 +125,13 @@ const page = () => {
         }
         router.replace(profileUrl)
     };
-    
+
     if (!session || !session.user) {
         return <div> Please Login</div>
     }
 
-    return (
+    return (<>
+        <Navbar />
         <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
             <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
@@ -188,8 +189,9 @@ const page = () => {
                 )}
             </div>
         </div>
+    </>
     );
 }
 
 
-export default page
+export default Page

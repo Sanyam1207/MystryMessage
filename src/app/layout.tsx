@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'True Feedback',
+  title: 'Mystry Message',
   description: 'Real feedback from real people.',
 };
 
@@ -18,6 +18,7 @@ interface RootLayoutProps {
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" >
+      <link rel='icon' href='/favicon.png'/>
       <AuthProvider>
         <body className={inter.className}>
           {children}

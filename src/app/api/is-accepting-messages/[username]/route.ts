@@ -33,7 +33,7 @@ export async function GET(request: Request, {params}: {params : {username : stri
     catch (error) {
         return Response.json({
             success: false,
-            message: 'Some Internal Errors Occured In Checking Message Status',
+            message: `Some Internal Errors Occured In Checking Message Status ${error}`,
         },
             {
                 status: 500,
