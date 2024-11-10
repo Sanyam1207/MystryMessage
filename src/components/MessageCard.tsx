@@ -1,11 +1,5 @@
 'use client'
 
-import React, { useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import dayjs from 'dayjs';
-import { X } from 'lucide-react';
-import { Message } from '@/model/User';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,9 +11,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { Button } from './ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { Message } from '@/model/User';
 import { ApiResponse } from '@/types/ApiResponse';
+import axios, { AxiosError } from 'axios';
+import dayjs from 'dayjs';
+import { X } from 'lucide-react';
+import { Button } from './ui/button';
 
 type MessageCardProps = {
   message: Message;
