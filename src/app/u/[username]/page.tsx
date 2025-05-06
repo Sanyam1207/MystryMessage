@@ -39,7 +39,8 @@ const MessagePage = () => {
     try {
       const response = await axios.post<ApiResponse>("/api/suggest-messages", { content });
       const { data } = response
-      const message: string = data.message
+      console.log(`\nResponse Data : ${JSON.stringify(data)}`)
+      const message: string = data.data || data.message
       setMessages(message)
       setMessageArray(message.split(" || "))
 
