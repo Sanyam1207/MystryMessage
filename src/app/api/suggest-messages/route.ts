@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
         }, {
             status: 200
         });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.error('Gemini API Error:', error);
         let errorMessage = 'Failed to connect to Gemini API';
